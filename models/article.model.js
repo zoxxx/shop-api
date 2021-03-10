@@ -3,7 +3,7 @@ const tableName = "articles";
 
 // constructor
 const Article = function(article) {
-  this.id = article.id;
+  //this.id = article.id;
   this.title = article.title;
   this.summary = article.summary;
   this.price = article.price;
@@ -92,8 +92,8 @@ Article.remove = (id, result) => {
 
 Article.updateById = (id, article, result) => {
   sql.query(
-    "UPDATE " + tableName + " SET id = ?, title = ?, summary = ?, price = ?, photo = ? WHERE id = ?",
-    [article.id, article.title, article.summary, article.price, article.photo, id],
+    "UPDATE " + tableName + " SET title = ?, summary = ?, price = ?, photo = ? WHERE id = ?",
+    [ article.title, article.summary, article.price, article.photo, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

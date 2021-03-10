@@ -8,6 +8,8 @@ const port = process.env.APP_PORT;
 app.use(cors());
 app.options('*', cors());
 
+app.use(express.static('uploads'));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

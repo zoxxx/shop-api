@@ -4,12 +4,6 @@ const Article = require("../models/article.model.js"),
 // Create and Save a new Article
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.id) {
-    res.status(400).send({
-      message: "Id can not be empty!"
-    });
-    return;
-  }
   if (!req.body.title) {
     res.status(400).send({
       message: "Title can not be empty!"
@@ -37,7 +31,7 @@ exports.create = (req, res) => {
 
   // Create a Article
   const article = new Article({
-    id: req.body.id,
+    //id: req.body.id,
     title: req.body.title,
     summary: req.body.summary,
     price: req.body.price,
@@ -90,7 +84,7 @@ exports.delete = (req, res) => {
     Article.photoFind(req.params.articleId, (err, data) => {
       var photoPath = process.env.PWD + '/uploads/' + data;
       if (err) {
-         console.log("greska");
+         console.log("error: ", err);
       }else {
         fs.unlink(photoPath, (err) => {
           if (err) {
@@ -121,12 +115,6 @@ exports.delete = (req, res) => {
   // Update a article identified by the articleId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if (!req.body.id) {
-      res.status(400).send({
-        message: "Id can not be empty!"
-      });
-      return;
-    }
     if (!req.body.title) {
       res.status(400).send({
         message: "Title can not be empty!"
@@ -153,7 +141,6 @@ exports.update = (req, res) => {
     }
 
     const article = new Article({
-      id: req.body.id,
       title: req.body.title,
       summary: req.body.summary,
       price: req.body.price,
@@ -162,7 +149,7 @@ exports.update = (req, res) => {
     Article.photoFind(req.params.articleId, (err, photoName) => {
       const photoPath = process.env.PWD + '/uploads/' + photoName;
         if (err) {
-           console.log("greska");
+           console.log("error: ", err);
         }else {
           fs.unlink(photoPath,(err) => {
             if (err) {

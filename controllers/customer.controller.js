@@ -1,6 +1,7 @@
 const Customer = require("../models/customer.model.js");
 
 exports.buy = (req, res) => {
+    console.log(req.body);
     // Validate Request
     if (!req.body.email || !/\S+@\S+\.\S+/.test(req.body.email)) {
         res.status(400).json({
